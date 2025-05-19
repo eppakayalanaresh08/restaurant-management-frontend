@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!confirm('Are you sure you want to delete this table?')) return;
         
         const tableId = event.currentTarget.dataset.id;
+        console.log(tableId,'tableId')
         
         axios.delete(`https://restaurant-management-backend-4g2b.onrender.com/api/tables/${tableId}`)
             .then(response => {
