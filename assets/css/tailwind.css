@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom components */
+@layer components {
+    .btn {
+        @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+    }
+    
+    .btn-primary {
+        @apply bg-emerald-600 text-white hover:bg-emerald-700;
+    }
+    
+    .btn-outline {
+        @apply border border-emerald-600 text-emerald-600 hover:bg-emerald-50;
+    }
+    
+    .card {
+        @apply bg-white rounded-lg shadow-sm overflow-hidden;
+    }
+    
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    }
+    
+    .badge-success {
+        @apply bg-green-100 text-green-800;
+    }
+    
+    .badge-warning {
+        @apply bg-yellow-100 text-yellow-800;
+    }
+    
+    .badge-danger {
+        @apply bg-red-100 text-red-800;
+    }
+    .nav-link {
+        @apply text-white hover:text-gray-200 transition-colors duration-200;
+      }
+}
+
+
+/* Responsive table labels */
+@media (max-width: 768px) {
+    .table-responsive td {
+        @apply flex justify-between items-center;
+    }
+    
+    .table-responsive td::before {
+        @apply font-semibold text-gray-500 mr-4;
+    }
+}
