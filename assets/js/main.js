@@ -5,10 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const total = tables.length;
             const available = tables.filter(t => t.status === 'available').length;
             const occupied = tables.filter(t => t.status === 'occupied').length;
+            const reserved = tables.filter(t => t.status === 'reserved').length;
 
             document.getElementById('totalTables').textContent = total;
             document.getElementById('availableTables').textContent = available;
             document.getElementById('occupiedTables').textContent = occupied;
+            document.getElementById('reservedTables').textContent = reserved;
+
         })
         .catch(error => {
             console.error('Failed to fetch dashboard data', error);

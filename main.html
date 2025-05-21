@@ -11,19 +11,36 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/assets/css/main.css">
     
     <style>
         .table-responsive {
             overflow-x: auto;
         }
+        
+        .status-select {
+            width: auto;
+            display: inline-block;
+            min-width: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .status-select:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
         @media (max-width: 768px) {
             .table-responsive td {
                 display: flex;
@@ -31,84 +48,25 @@
                 align-items: center;
             }
             .table-responsive td::before {
-                
                 content: attr(data-label);
                 font-weight: 600;
                 color: #64748b;
                 margin-right: 1rem;
             }
+            
+            .status-select {
+                width: 100%;
+            }
+            
+            .table-responsive td[data-label="Status"] {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* Status select styling */
-.status-select {
-    width: auto;
-    display: inline-block;
-    min-width: 100px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.status-select:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-/* Alerts styling */
-.alert {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    min-width: 300px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-    .status-select {
-        width: 100%;
-    }
-    
-    .table-responsive td[data-label="Status"] {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
     </style>
-
-  
-
-
-
-
-
-
-
-
-
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-
-
-
-
     <nav class="fixed top-0 left-0 right-0 bg-emerald-800 shadow-lg z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
@@ -155,13 +113,6 @@
             </div>
         </div>
     </nav>
-
-
-
-
-
-    <main class="container py-5">
-
 
     <!-- Main Content -->
     <div class="container mt-5 py-5">
@@ -230,26 +181,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Sample Data (will be replaced by JavaScript) -->
-                            <tr>
-                                <td data-label="Table #">1</td>
-                                <td data-label="Location">Main Dining</td>
-                                <td data-label="Capacity">4</td>
-                                <td data-label="Status"><span class="badge bg-success">Available</span></td>
-                                <td data-label="QR Code">
-                                    <button class="btn btn-sm btn-outline-primary view-qr">
-                                        <i class="fas fa-qrcode"></i> View
-                                    </button>
-                                </td>
-                                <td data-label="Actions">
-                                    <button class="btn btn-sm btn-outline-secondary edit-table">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger delete-table">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <!-- Data will be loaded by JavaScript -->
                         </tbody>
                     </table>
                 </div>
@@ -308,7 +240,6 @@
                 <div class="modal-header bg-emerald-700 text-white">
                     <h5 class="modal-title">Table QR Code</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    
                 </div>
                 <div class="modal-body text-center">
                     <div id="qrCodeContainer" class="mb-3"></div>
@@ -320,14 +251,8 @@
             </div>
         </div>
     </div>
-</main>  
-    <!-- Footer -->
-    <!-- <footer class="bg-emerald-800 text-white py-4">
-        <div class="container text-center">
-            <p>&copy; 2025 RestaurantPro. All rights reserved.</p>
-        </div>
-    </footer> -->
 
+    <!-- Footer -->
     <footer class="bg-emerald-800 text-white py-4">
         <div class="container text-center">
             <p>&copy; 2025 RestaurantPro. All rights reserved.</p>
@@ -338,163 +263,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-    <script src="assets/js/table.js"></script>
-    <script>
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-    </script>
-    <!-- Main Table JavaScript -->
-  
     
+    <!-- Main Table JavaScript -->
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize modals
-        const addTableModal = new bootstrap.Modal(document.getElementById('addTableModal'));
-        const qrCodeModal = new bootstrap.Modal(document.getElementById('qrCodeModal'));
-
-        
-        
-        // Sample data - replace with real API calls
-        const sampleTables = [
-            // {
-            //     id: 1,
-            //     tableNumber: 1,
-            //     location: "main dining",
-            //     capacity: 4,
-            //     status: "available"
-            // },
-            // {
-            //     id: 2,
-            //     tableNumber: 2,
-            //     location: "patio",
-            //     capacity: 6,
-            //     status: "occupied"
-            // }
-        ];
-
-        // Render tables
-        function renderTables(tables) {
-            const tbody = document.querySelector('#tablesTable tbody');
-            tbody.innerHTML = '';
-            
-            tables.forEach(table => {
-                const statusClass = table.status === 'available' ? 'bg-success' : 
-                                  table.status === 'occupied' ? 'bg-danger' : 'bg-warning';
-                
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td data-label="Table #">${table.tableNumber}</td>
-                    <td data-label="Location">${table.location}</td>
-                    <td data-label="Capacity">${table.capacity}</td>
-                    <td data-label="Status"><span class="badge ${statusClass}">${table.status}</span></td>
-                    <td data-label="QR Code">
-                        <button class="btn btn-sm btn-outline-primary view-qr" data-id="${table.id}">
-                            <i class="fas fa-qrcode"></i> View
-                        </button>
-                    </td>
-                    <td data-label="Actions">
-                        <button class="btn btn-sm btn-outline-secondary edit-table" data-id="${table.id}">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger delete-table" data-id="${table.id}">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-
-            // Add event listeners
-            document.querySelectorAll('.view-qr').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const tableId = this.getAttribute('data-id');
-                    const table = sampleTables.find(t => t.id == tableId);
-                    
-                    // Generate QR code
-                    const qrContainer = document.getElementById('qrCodeContainer');
-                    qrContainer.innerHTML = '';
-                    QRCode.toCanvas(qrContainer, `Table ${table.tableNumber}`, {
-                        width: 200,
-                        color: {
-                            dark: '#2E7D32',
-                            light: '#ffffff'
-                        }
-                    }, function(error) {
-                        if (error) console.error(error);
-                    });
-                    
-                    qrCodeModal.show();
-                });
-            });
-
-
-            
-
-        //     document.querySelectorAll('.edit-table').forEach(btn => {
-        //         btn.addEventListener('click', function() {
-        //             const tableId = this.getAttribute('data-id');
-        //             const table = sampleTables.find(t => t.id == tableId);
-                    
-        //             // Fill form
-        //             const form = document.getElementById('tableForm');
-        //             form.querySelector('[name="tableNumber"]').value = table.tableNumber;
-        //             form.querySelector('[name="location"]').value = table.location;
-        //             form.querySelector('[name="capacity"]').value = table.capacity;
-        //             form.querySelector('[name="status"]').value = table.status;
-                    
-        //             addTableModal.show();
-        //         });
-        //     });
-        // }
-
-        // Initial render
-        renderTables(sampleTables);
-
-        // Save table
-        document.getElementById('saveTable').addEventListener('click', function() {
-            // alert('Table saved! (In a real app, this would call your API)');
-            addTableModal.hide();
-        });
-
-        // Print QR code
-        document.getElementById('printQR').addEventListener('click', function() {
-            window.print();
-        });
-
-        // Apply filters
-        document.getElementById('applyFilters').addEventListener('click', function() {
-            const status = document.getElementById('statusFilter').value;
-            const filtered = sampleTables.filter(table => 
-                !status || table.status === status
-            );
-            renderTables(filtered);
-        });
-    });
-    // Add this to your JavaScript
-// document.querySelector('#qrCodeModal .btn-close').addEventListener('click', function() {
-//     const modal = bootstrap.Modal.getInstance(document.getElementById('qrCodeModal'));
-//     modal.hide();
-// });
-    </script> -->
